@@ -1,0 +1,9 @@
+[25-Sep-2018 05:34:40 UTC] PHP Fatal error:  Call to undefined method common_model::delThis() in /home/indosunn/public_html/ym-payroll/application/controllers/komponengaji.php on line 433
+[25-Sep-2018 05:35:14 UTC] PHP Fatal error:  Call to undefined method common_model::delThis() in /home/indosunn/public_html/ym-payroll/application/controllers/komponengaji.php on line 433
+[19-Dec-2018 19:10:19 UTC] PHP Fatal error:  Call to undefined method common_model::comboTipeDonasi() in /home/indosunn/public_html/ym-payroll/application/controllers/komponengaji.php on line 22
+[25-Dec-2018 04:06:45 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/indosunn/public_html/ym-payroll/application/views/fgaji_zisco_bonus/gaji_zisco_bonus_list.php on line 28
+[27-Dec-2018 04:29:20 UTC] PHP Fatal error:  Cannot access empty property in /home/indosunn/public_html/ym-payroll/application/controllers/gaji_zisco_transport.php on line 301
+[30-Dec-2018 23:48:59 UTC] PHP Parse error:  syntax error, unexpected '?>' in /home/indosunn/public_html/ym-payroll/application/views/fgaji_zisco_bonus/gaji_zisco_bonus_list.php on line 158
+[02-Jan-2019 11:59:53 UTC] PHP Fatal error:  Call to undefined method CI_DB_mysql_result::resul() in /home/indosunn/public_html/ym-payroll/application/controllers/master_payroll.php on line 165
+[02-Jan-2019 12:00:13 UTC] PHP Fatal error:  Call to a member function num_rows() on array in /home/indosunn/public_html/ym-payroll/application/controllers/master_payroll.php on line 166
+[26-Jan-2019 03:52:55 UTC] PHP Parse error:  syntax error, unexpected '/' in /home/indosunn/public_html/ym-payroll/application/views/fgaji_kacab_bonus/gaji_kacab_bonus_list.php on line 420

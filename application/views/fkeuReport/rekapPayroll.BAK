@@ -1,0 +1,62 @@
+<?	
+	$viewKop=$this->commonlib->tableKop('KEU-PAYROLL',$title, '00', '__','__');
+	echo $viewKop;
+	//echo $strMaster;
+	
+?>
+<!-- 1 	NURUL HAYAT 	2 	OPERASIONAL 	6 	PM
+1 	NURUL HAYAT 	2 	OPERASIONAL 	7 	QC
+1 	NURUL HAYAT 	2 	OPERASIONAL 	8 	HRD
+1 	NURUL HAYAT 	3 	ZIS & USAHA 	9 	ZIS
+1 	NURUL HAYAT 	3 	ZIS & USAHA 	10 	AQIQAH
+1 	NURUL HAYAT 	3 	ZIS & USAHA 	11 	BARBEKU
+1 	NURUL HAYAT 	3 	ZIS & USAHA 	12 	PERCETAKAN
+1 	NURUL HAYAT 	3 	ZIS & USAHA 	13 	HERBAL -->
+<table class='borderless' >
+<?	foreach ($arrCabang as $cabang){
+	echo "<tr><td colspan=3><h3>Cabang : ".$cabang->KOTA."</h3></td></tr>";
+	$str="SELECT T1.ID_DIV IDLEV1, T1.NAMA_DIV AS LEV1, T2.ID_DIV AS IDLEV2,T2.NAMA_DIV AS LEV2, T3.ID_DIV AS IDLEV3,T3.NAMA_DIV AS LEV3
+			FROM mst_divisi AS t1
+			LEFT JOIN mst_divisi AS t2 ON t2.id_div_parent = t1.id_div
+			LEFT JOIN mst_divisi AS t3 ON t3.id_div_parent = t2.id_div where t1.id_div=1 order by idlev2, idlev3 ";
+	$rsDiv=$this->db->query($str)->result();
+	$lvl2Reset=0;
+	$level1=true;
+	$idL2Temp=0;
+	echo "<thead><tr><th colspan=2>KELOMPOK</th><th>GAJI POKOK</th><th>UM,TRANSPORT, TUNJ2 NON-ANAK</th><th>TUNJ.ANAK</th><th>BONUS2</th><th>POTONGAN</th></tr></thead>";
+		foreach ($rsDiv as $divLoop){
+			echo "<tr><td colspan=3></td></tr>";
+			$scekL2="select distinct id_div from mst_struktur where id_cab=".$cabang->ID_CAB." and id_div=".$divLoop->IDLEV2;
+			$cnumL2=$this->db->query($scekL2)->num_rows();
+			
+			$scekL3="select distinct id_div from mst_struktur where id_cab=".$cabang->ID_CAB." and id_div='".$divLoop->IDLEV3."' order by id_div";
+			$cnumL3=$this->db->query($scekL3)->num_rows();
+			
+			if ($idL2Temp!=$divLoop->IDLEV2){
+				$lvl2Reset=0;
+				$level1=true;
+			}
+			if ($cnumL2>=1 &&   $level1==true){	
+				echo "<tr><td>&nbsp;</td><td COLSPAN=2>Divisi : ".$divLoop->LEV2."</td></TR>";
+				$level1=false;
+				$idL2Temp=$divLoop->IDLEV2;
+				
+			}
+			if ($cnumL3>=1){
+				echo "<tr><td>&nbsp;</td><td>&nbsp;</td><td>Divisi : ".$divLoop->LEV3."</td></TR>";
+			}
+		}
+
+}
+?>
+</table>
+<? if ($display==0){
+	$param=$thn."_".$bln."_1";
+?>
+<br>
+<div class="row" style="text-align:center">
+	<div class="col-md-12">	
+		<a href="<?=base_url('keuReportPayroll/rekapPayroll/'.$param)?>" class="btn btn-success">Cetak/Download</a><br>		
+	</div>
+</div>	
+<?}?>
