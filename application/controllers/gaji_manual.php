@@ -357,7 +357,7 @@ class gaji_manual extends MY_App {
 		//$id_div=$this->input->get('divisi');		
 		$thn=$this->input->get('thn');
 		$bln=$this->input->get('bln');
-		$str = "select * from gaji_non_sistem where TAHUN='$thn' and bulan='$bln' ORDER BY `NIK` ";
+		$str = "select * from gaji_non_sistem where thn='$thn' and bln='$bln' ORDER BY `NIK` ";
 		$cnt = $this->input->get('cnt');
 		$step = $this->input->get('step');
 		if (empty($step)){
