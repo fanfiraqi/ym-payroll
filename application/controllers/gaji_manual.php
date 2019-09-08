@@ -267,8 +267,8 @@ class gaji_manual extends MY_App {
 		$thn=$arrKey[0];
 		$nik=$arrKey[1];
 		$str="SELECT p.NIK,p.TGL_AKTIF, p.NAMA, p.ID_CABANG, p.ID_DIV,p.ID_JAB, gs. *
-			FROM `gaji_staff` gs, pegawai p
-			WHERE gs.nik = p.nik and gs.TAHUN='".$arrKey[0]."' and gs.nik='".$nik."'";		
+			FROM `gaji_non_sistem` gs, pegawai p
+			WHERE gs.nik = p.nik and gs.thn='".$arrKey[0]."' and gs.nik='".$nik."'";		
 		$rsOut=$this->db->query($str)->row();
 		$rsMst=$this->gate_db->query("select NAMA_JAB from mst_jabatan where id_jab=".$rsOut->ID_JAB)->row();
 		
