@@ -353,10 +353,11 @@ class gaji_manual extends MY_App {
 
 	function slipLoop(){
 		//slipLoop param : alamat email, path file slip
-		$id_cab=$this->input->get('cabang');
+		//$id_cab=$this->input->get('cabang');
 		//$id_div=$this->input->get('divisi');		
 		$thn=$this->input->get('thn');
-		$str = "select * from gaji_non_sistem where TAHUN='$thn' and id_cabang=$id_cab ORDER BY `NIK` ";
+		$bln=$this->input->get('bln');
+		$str = "select * from gaji_non_sistem where TAHUN='$thn' and bulan='$bln' ORDER BY `NIK` ";
 		$cnt = $this->input->get('cnt');
 		$step = $this->input->get('step');
 		if (empty($step)){
