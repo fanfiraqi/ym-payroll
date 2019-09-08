@@ -287,8 +287,8 @@ class gaji_manual extends MY_App {
 		$html.="<td style='text-align:center'>";
 		$html.="<h2>YAYASAN YATIM MANDIRI</h2>";
 		$html.='Jl. Raya Jambangan 135-137<br>';
-		$html.="Telp. 031-8283844, Fax. 031-8291757<br>";
-		$html.="SURABAYA 60400<br>";
+		$html.="Telp. 031 8283488<br>";
+		$html.="SURABAYA 60232<br>";
 		$html.="</td>";
 		$html.="</tr>";
 		$html.="<tr><td colspan=2 style='text-align:center'><h2>SLIP GAJI KARYAWAN YATIM MANDIRI<br>TAHUN ".$thn."</h2></td></tr>";
