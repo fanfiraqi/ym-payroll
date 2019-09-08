@@ -27,7 +27,7 @@ $role=$group_id;
 			<ul class="nav navbar-nav side-nav nicescroll-bar">
 			<li><hr class="light-grey-hr mb-10"/></li>
 			<li class="navigation-header">
-				<?php echo anchor("",'<div class="pull-left"><i class="fa fa-home mr-20"></i><span class="right-nav-text">Beranda</span></div><div class="clearfix"></div>');?>
+				<?php echo anchor("",'<div class="pull-left"><i class="fa fa-home mr-20"></i><span class="right-nav-text">Beranda</span></div>');?>
 			</li>
 			<li><hr class="light-grey-hr mb-10"/></li>
 			<?php if (in_array($role, [1,4,60,65])){?>
@@ -111,9 +111,8 @@ $role=$group_id;
 
 			</li>
 			<li><hr class="light-grey-hr mb-10"/></li>
-			<li><small style="text-align:center; font-size:x-small;position: absolute; top: 240px; padding-left: 25px;">Best Running with Firefox @2018</small></li>
 			<?}?>
 			</ul>
-			<!-- <div  style="position:fixed; top:95%;z-index:1080;margin-left:20px;"><label  style="text-align:center; font-size:x-small;"><b>Best Running with Firefox @2018</b></label></div>  -->
+			<div  style="position:fixed; top:95%;z-index:1080;margin-left:20px;"><label  style="text-align:center; font-size:x-small;"><b>Best Running with Firefox @2018</b></label></div> 
 		</div>
 		<!-- /Left Sidebar Menu -->

@@ -583,13 +583,13 @@ class gaji_zisco_transport extends MY_App {
     				$respon->pesan = $yg_belum;
     		}else{
     				$respon->status = 'success';
-			}
-			
-		$respon->jml=$jml_yg_belum."#".$strRAZ_Cek;
-		} else {
+    		}
+    		$respon->jml=$jml_yg_belum."#".$strRAZ_Cek;
+		}else{
 			$respon->status = 'error';
     		$respon->pesan = "Belum ada rekap absensi zisco periode '".$thn.$bln."'  ";
 		}
+		
 		echo json_encode($respon);
 	}
 }
