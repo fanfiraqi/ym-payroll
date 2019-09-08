@@ -97,7 +97,7 @@
 		
 			}else{	
 			
-			echo '<a href="javascript:void(0)" data-url="'.base_url('gaji_manual/cetak_slip/').'" data-id="<?=$param?>" onclick="singleSlip(this)"><i class="fa fa-edit" title="Generate Slip to .pdf File">Generate&nbsp;pdf</i></a>';
+			echo '<a href="javascript:void(0)" data-url="'.base_url('gaji_manual/cetak_slip/').'" data-id="'.$param.'" onclick="singleSlip(this)"><i class="fa fa-edit" title="Generate Slip to .pdf File">Generate&nbsp;pdf</i></a>';
 			}
 			
 				echo "</td>";
