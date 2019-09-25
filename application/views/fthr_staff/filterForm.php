@@ -16,7 +16,14 @@
 					<div class="col-sm-8"><?=form_dropdown('wilayah',array('Pusat'=>'Pusat', 'Cabang'=>'Cabang'),'','id="wilayah" class="form-control"');?></div>
 				</div>
 			</div>
-		</div>	
+		</div>
+		<!-- <div class="row">
+			<div class="col-xs-12">
+				<div class="form-group"><label class="col-sm-4 control-label">WILAYAH</label>
+					<div class="col-sm-8"><?=form_dropdown('wilayah',array('Pusat'=>'Pusat', 'Cabang'=>'Cabang'),'','id="wilayah" class="form-control"');?></div>
+				</div>
+			</div>
+		</div>	 -->
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="form-group"><label class="col-sm-4 control-label">TAHUN</label>

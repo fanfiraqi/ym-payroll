@@ -4,7 +4,7 @@
 	//echo $strMaster;
 	if ($display==0){ // autoscroll display
 ?>
- <div class="row" style="overflow:scroll; height:550px">
+ <div class="row" style="overflow:scroll; height:520px">
 	<div class=".col-lg-12" >
 	<?}?>
 <table class='borderless' >

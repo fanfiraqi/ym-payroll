@@ -29,8 +29,8 @@ class gaji_manual extends MY_App {
 
 	public function gaji_list(){
 		$this->template->set('pagetitle','Daftar Penggajian Non-Sistem ');		
-		$bulan=$bln=$this->input->post('cbBulan');		
-		$tahun=$thn=$this->input->post('cbTahun');
+		$bulan=$bln=$this->input->post('cbBulan'); 		
+		$tahun=$thn=$this->input->post('cbTahun'); 
 		$isXls=$this->input->post('isXls');	
 		// no zisco, dps, dokter
 			

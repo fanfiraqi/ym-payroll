@@ -1,6 +1,6 @@
 <?php echo form_open('rptPayroll/rekapPayroll',array('class'=>'form-horizontal','id'=>'myform'));?>
 <div class="row">	
-	<div class="col-xs-12">
+	<div class="col-xs-10">
 		<div class="panel panel-default"><div class="panel-heading">Pilih Kategori 
 		</div><div class="panel-body">
 <? if ($jenis=="staff") {
@@ -10,7 +10,7 @@
 	}
 	?>		
 		<div class="row">
-			<div class="col-xs-12">
+			<div class="col-xs-10">
 				<div class="form-group"><label class="col-sm-4 control-label">LAZ / TASHARUF</label>
 					<div class="col-sm-8"><?=form_dropdown('penggajian',array('laz'=>'LAZ/AMIL', 'tasharuf'=>'TASHARUF'),'','id="penggajian" class="form-control"');?></div>
 				</div>
@@ -24,6 +24,13 @@
 				</div>
 			</div>
 		</div>	
+		<!-- <div class="row">
+			<div class="col-xs-12">
+				<div class="form-group"><label class="col-sm-4 control-label">WILAYAH</label>
+					<div class="col-sm-8"><?=form_dropdown('wilayah',$wil,'','id="wilayah" class="form-control"');?></div>
+				</div>
+			</div>
+		</div>	 -->
 <? } ?>
 <? if ($jenis=="zisco") {?>		
 		<div class="row">
