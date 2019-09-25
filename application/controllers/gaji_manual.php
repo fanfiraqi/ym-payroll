@@ -271,10 +271,13 @@ class gaji_manual extends MY_App {
 			FROM `gaji_non_sistem` gs, pegawai p
 			WHERE gs.nik = p.nik and gs.thn='".$arrKey[0]."'  and gs.bln='".$arrKey[1]."' and gs.nik='".$nik."'";		
 		$rsOut=$this->db->query($str)->row();
+		
+		$rsmaster=$this->db->query("select * from gaji_validasi where id=".$id_validasi)->row();
 		$rsMst=$this->gate_db->query("select NAMA_JAB from mst_jabatan where id_jab=".$rsOut->ID_JAB)->row();
 		
 		$data['str']=$str;		
 		$data['thn']=$arrKey[0];
+		$data['bln']=$arrKey[1];
 		
 		
 		$interval = date_diff(date_create(), date_create($rsOut->TGL_AKTIF));
@@ -299,19 +302,13 @@ class gaji_manual extends MY_App {
 		$html.="</table>";
 		$html.="<table class=\"mydata\" >";
 		$html.="<tr><tD colspan=4><u>A. PENDAPATAN</u></td></tr>";
-		$html.="<tr><td>1</td><td>Gaji Pokok</td><td>:</td><td style='text-align:right'>Rp. ".number_format($rsOut->gapok,0,',','.')."</td></tr>";
-		$html.="<tr><td>2</td><td>Tunjangan Masa kerja</td><td>:</td><td style='text-align:right'>Rp. ".number_format($rsOut->tunj_masakerja,0,',','.')."</td></tr>";
-		$html.="<tr><td>3</td><td>Uang Makan</td><td>:</td><td style='text-align:right'>Rp. ".number_format($rsOut->uang_makan,0,',','.')."</td ></tr>";
-		$html.="<tr><td>4</td><td>Insentif Kehadiran</td><td>:</td><td style='text-align:right'>Rp. ".number_format($rsOut->tunj_kehadiran,0,',','.')."</td></tr>";
-		$html.="<tr><td>5</td><td>Tunjangan Jabatan</td><td>:</td><td style='text-align:right'>Rp. ".number_format($rsOut->tunj_jabatan,0,',','.')."</td></tr>";
-		$html.="<tr><th COLSPAN=3><b>Total Pendapatan</b></th><th style='text-align:right'><b>Rp. ".number_format($rsOut->total,0,',','.')."</b></th></tr>";
+		$html.="<tr><td>1</td><td>Gaji </td><td>:</td><td style='text-align:right'>Rp. ".number_format($rsOut->JML_TERIMA,0,',','.')."</td></tr>";		
+		$html.="<tr><th COLSPAN=3><b>Total Pendapatan</b></th><th style='text-align:right'><b>Rp. ".number_format($rsOut->JML_TERIMA,0,',','.')."</b></th></tr>";
 		
 		$html.="<tr><tD colspan=4><u>B. POTONGAN</u></td></tr>";
-		$html.="<tr><td>1</td><td>Dansos</td><td>:</td><td style='text-align:right'>Rp. ".number_format(0,0,',','.')."</td></tr>";
-		$html.="<tr><td>2</td><td>THT</td><td>:</td><td style='text-align:right'>Rp. ".number_format(0,0,',','.')."</td></tr>";
-		$html.="<tr><td>3</td><td>Zakat</td><td>:</td><td style='text-align:right'>Rp. ".number_format(0,0,',','.')."</td ></tr>";
-		$html.="<tr><th COLSPAN=3><b>Total Potongan</b></th><th style='text-align:right'><b>Rp. ".number_format(0,0,',','.')."</b></th></tr>";
-		$html.="<tr><th COLSPAN=3><b>Total Diterima</b></th><th style='text-align:right'><b>Rp. ".number_format($rsOut->total,0,',','.')."</b></th></tr>";
+		$html.="<tr><td>3</td><td>Jumlah Potongan</td><td>:</td><td style='text-align:right'>Rp. ".number_format($rsOut->JML_POTONGAN,0,',','.')."</td ></tr>";
+		$html.="<tr><th COLSPAN=3><b>Total Potongan</b></th><th style='text-align:right'><b>Rp. ".number_format($rsOut->JML_POTONGAN,0,',','.')."</b></th></tr>";
+		$html.="<tr><th COLSPAN=3><b>Total Diterima</b></th><th style='text-align:right'><b>Rp. ".number_format($rsOut->TOTAL,0,',','.')."</b></th></tr>";
 		$html.="<tr><tD colspan=4></td></tr>";
 		$html.="<tr><td COLSPAN=4 >MASA KERJA : $masaKerja </td></tr>";		
 		$html.="<tr><tD colspan=4 style='text-align:right'><i><b>HRD - Yatim Mandiri</b></i></td></tr>";
@@ -319,19 +316,20 @@ class gaji_manual extends MY_App {
 		$html.="</table>";
 		
 		$html.=$this->commonlib->pdfFooterTemplate();
-
-		$path=$this->createPath('slip_thr','', '', $thn, date('m') );	//csv path hanya s.d thn masuk nama file
+		
+		//$path=$this->createPath('slip','', '', $thn, date('m') );	//csv path hanya s.d thn masuk nama file
+		$path=$this->createPath('slip',$rsmaster->JENIS, $rsmaster->WILAYAH, $rsmaster->TAHUN, $rsmaster->BULAN  );	
 		$fileName="SLIP GAJI STAFF ".$thn."-".$nik.".pdf";		
 		
 		//$this->ci_pdf->pdf_create($html, $path."/".$fileName, FALSE);
 		$this->ci_pdf->pdf_create_my($html, $path."/".$fileName, 'a6','portrait', FALSE);
 		
 		//SIMPAN RECORD
-		$strcek="select * from file_slip where nik='".$nik."' and thn='$thn'";
+		$strcek="select * from file_slip where nik='".$nik."' and thn='$thn' and bln='$bln'";
 		$cek=$this->db->query($strcek)->num_rows();
 		if ($cek>0){
 			$data = array('PATH' => $path,'NAMA_FILE' => $fileName, 'UPDATED_BY' =>'admin', 'UPDATED_DATE' =>date('Y-m-d H:i:s')	);
-			$this->db->where(array('nik'=>$nik,  'thn'=>$thn))->update('file_slip', $data);
+			$this->db->where(array('nik'=>$nik,  'thn'=>$thn,  'bln'=>$bln))->update('file_slip', $data);
 		}else{
 			$data = array(
 						'NIK' => $nik,

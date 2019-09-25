@@ -86,7 +86,7 @@
 	echo "<td>".form_input(array('name'=>'total_'.$i,'id'=>'total_'.$i,'class'=>'myform-control','size'=>10,'readonly'=>true, 'value'=>$hasil->TOTAL ) )."</td>";
 	// GENERATE/DOWNLOAD 
 			if( $sts=="edit" || $sts=="disabled"){
-			$param=$tahun."_".$bln."_".$hasil->NIK;
+			$param=$id_validasi."_".$hasil->NIK;
 			//CEK FILE_SLIP
 			$strFile="select count(*)	CKFILE from file_slip where thn='$tahun' and bln='$bln' and nik='".$hasil->NIK."'";
 			$rsFile=$this->db->query($strFile)->row();

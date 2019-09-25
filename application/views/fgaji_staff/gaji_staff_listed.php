@@ -271,7 +271,7 @@ if ($rowmaster->ID==22){
 <td><?=form_input(array('name'=>'subGrandTotal_'.$i,'id'=>'subGrandTotal_'.$i,'class'=>'myform-control','size'=>10,'readonly'=>true, 'value'=>round($sumPer_row+$sumPotPer_row,0) ) );?></td>
 	<!-- GENERATE/DOWNLOAD -->
 		<?	if( $sts=="edit" || $sts=="disabled"){
-			$param=$tahun."_".$hasil->NIK;
+			$param=$id_validasi."_".$hasil->NIK;
 			//CEK FILE_SLIP
 			$strFile="select count(*) CKFILE from file_slip where thn='$thn' and bln='$bln' and jenis='".$laz_tasharuf."' and nik='".$hasil->NIK."'";
 			$rsFile=$this->db->query($strFile)->row();
