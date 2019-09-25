@@ -251,7 +251,6 @@
 	$i++;
 		}
 	}
-?>			
-
-                                    </tbody>
-                                </table>
+?>
+</tbody>
+</table>

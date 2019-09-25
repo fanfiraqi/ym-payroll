@@ -468,8 +468,8 @@ $('#btXls').click(function() {
 				success: function(data,  textStatus, jqXHR){					
 					//alert("File csv sudah tersimpan");
 					$().showMessage('File excel sudah digenerate.','success',1000);
-					window.open('<?=base_url("'+data.isi+'")?>','_blank');
-					//alert(data.isi);
+					javascript:void(window.open('<?=base_url("'+data.isi+'")?>','_blank'));
+					//alert('<?php echo base_url("'+data.isi+'")?>');
 					
 				} 
 			});			
