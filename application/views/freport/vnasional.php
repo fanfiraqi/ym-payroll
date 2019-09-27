@@ -5,7 +5,7 @@
 	//echo $strlist;
 	echo '<table class="bordered" >';
 	echo "<tr><th colspan=3>STAFF DALAM</th><th colspan=2>KACAB </th><th colspan=3>ZISCO</th><th colspan=2>Non Sistem</th></tr>";
-	echo "<tr><th>No</th><th>Kantor</th><th>Jumlah </th><th>Kantor</th><th>Jumlah </th><th>Kantor</th><th>Jumlah Transport</th><th>Jumlah Bonus</th><th>Kantor</th><th>Jumlah</th></tr>";
+	echo "<thead style='display:block;'><tr><th style='width: 200px;'>Nama</th><th style='width: 200px;'>Kantor</th><th style='width: 200px;'>Jumlah Pendapatan</th><th style='width: 200px;'>Jumlah Potongan</th><th style='width: 200px;'>Penggajian</th></tr></thead>";
 	$strCab="";
 	if ($akses=="pusat"){
 		$strCab="select * from mst_cabang where is_active=1 and kota not like '%REGIONAL%' order by kota";
@@ -18,6 +18,7 @@
 	$rscab=$this->gate_db->query($strCab)->result();
 	$i=1;
 	$totpayroll_dalam=0;$totpayroll_kacab=0;$totpayroll_zistrans=0;$totpayroll_zisbonus=0;$totpayroll_nonsistem=0;
+	echo "<tbody style='overflow:auto; height: 260px; table-layout:fixed; display:block;'>";
 	foreach ($rscab as $rowcab){
 		$strDalam="SELECT  IFNULL(SUM(total),0) payroll FROM gaji_staff where thn='".$thn."' and bln='".$bln."'  and id_cabang=".$rowcab->id_cabang;
 		$strKacab="SELECT  IFNULL(SUM(total),0) payroll FROM gaji_kacab_bonus where thn='".$thn."' and bln='".$bln."'  and id_cabang=".$rowcab->id_cabang;
@@ -58,6 +59,7 @@
 	}
 
 echo "<tr><th colspan=2>Total</th><th>Rp.&nbsp;".number_format($totpayroll_dalam,2,',','.')." </th><th>&nbsp;</th><th>Rp.&nbsp;".number_format($totpayroll_kacab,2,',','.')." </th><th>&nbsp;</th><th>Rp.&nbsp;".number_format($totpayroll_zistrans,2,',','.')."</th><th>Rp.&nbsp;".number_format($totpayroll_zisbonus,2,',','.')."</th><th>&nbsp;</th><th>Rp.&nbsp;".number_format($totpayroll_nonsistem,2,',','.')."</th></tr>";
+echo "</tbody>";
 ?>
 </table>
 <? if ($display==0){

@@ -4,7 +4,7 @@
 	echo $viewKop;
 	//echo $strlist;
 	echo '<table class="bordered" >';
-	echo "<tr><th>Kantor</th><th>Jumlah Pendapatan</th><th>Jumlah Potongan</th><th>Penggajian</th></tr>";
+	echo "<thead style='display:block;'><tr><th style='width: 200px;'>Nama</th><th style='width: 200px;'>Kantor</th><th style='width: 200px;'>Jumlah Pendapatan</th><th style='width: 200px;'>Jumlah Potongan</th><th style='width: 200px;'>Penggajian</th></tr></thead>";
 	$strCab="";
 	if ($akses=="pusat"){
 		$strCab="select * from mst_cabang where is_active=1 and kota not like '%REGIONAL%' order by kota";
@@ -13,7 +13,7 @@
 	}else{
 		$strCab="select * from mst_cabang where is_active=1 and id_cabang=".$this->session->userdata('auth')->ID_CABANG;
 	}
-	
+	echo "<tbody style='overflow:auto; height: 260px; table-layout:fixed; display:block;'>";
 	$rscab=$this->gate_db->query($strCab)->result();
 	foreach ($rscab as $rowcab){
 		$strPay=$strlist." and id_cabang=".$rowcab->id_cabang;
@@ -32,6 +32,7 @@
 		echo "<td>Rp.&nbsp;".number_format($payroll,2,',','.')."</td>";
 		echo "</tr>";
 	}
+	echo "</tbody>";
 ?>
 </table>
 <? if ($display==0){

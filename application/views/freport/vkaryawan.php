@@ -4,7 +4,7 @@
 	echo $viewKop;
 	//echo $strlist;
 	echo '<table class="bordered" >';
-	echo "<tr><th>Nama</th><th>Kantor</th><th>Jumlah Pendapatan</th><th>Jumlah Potongan</th><th>Penggajian</th></tr>";
+	echo "<thead style='display:block;'><tr><th style='width: 200px;'>Nama</th><th style='width: 200px;'>Kantor</th><th style='width: 200px;'>Jumlah Pendapatan</th><th style='width: 200px;'>Jumlah Potongan</th><th style='width: 200px;'>Penggajian</th></tr></thead>";
 	$strCab="";
 	if ($akses=="pusat"){
 		$strCab="select * from mst_cabang where is_active=1 and kota not like '%REGIONAL%' order by kota";
@@ -16,6 +16,7 @@
 	
 	$rscab=$this->gate_db->query($strCab)->result();
 	$totall_pend=0; $totall_pot=0; $totall_pay=0;
+	echo "<tbody style='overflow:auto; height: 260px; table-layout:fixed; display:block;'>";
 	foreach ($rscab as $rowcab){
 
 		$strPay=$strlist_peg." and id_cabang=".$rowcab->id_cabang." group by namapeg";
@@ -44,12 +45,13 @@
 			$totall_pot+=$totcab_pot;
 			$totall_pay+=$totcab_pay;
 		}else{
-			echo "<tr><td colspan=5>Data Penggajian ".$rowcab->kota." ".$thn.$bln." tidak ada</td></tr>";
+			echo "<tr><td style='width:100px;' colspan=5>Data Penggajian ".$rowcab->kota." ".$thn.$bln." tidak ada</td></tr>";
 		}
 		
 		echo "<tr><td colspan=5>&nbsp;</td></tr>";
 	}
-	echo "<tr><th colspan=2>GRAND TOTAL </th><th>Rp.&nbsp;".number_format($totall_pend,2,',','.')."</th> <th>Rp.&nbsp;".number_format($totall_pot,2,',','.')."</th><th>Rp.&nbsp;".number_format($totall_pay,2,',','.')."</th></tr>";
+	echo "<tr><th colspan=2 style='width: 600px;'>GRAND TOTAL </th><th>Rp.&nbsp;".number_format($totall_pend,2,',','.')."</th> <th>Rp.&nbsp;".number_format($totall_pot,2,',','.')."</th><th>Rp.&nbsp;".number_format($totall_pay,2,',','.')."</th></tr>";
+	echo "</tbody>";
 ?>
 </table>
 <? if ($display==0){
